@@ -1,0 +1,27 @@
+.wrapper {
+	max-width: 90%;
+	margin: auto;
+	/* padding: 10px; */
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.container {
+	width: 270px;
+	height: 220px;
+	margin: 10px;
+	border: 1px solid #c2c2c2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	border-bottom: 2px solid gray;
+	border-radius: 5px;
+	/* padding: 10px 0; */
+}
+
+.container > img {
+	width: 230px;
+	height: 180px;
+	border: 1px solid #c2c2c2;
+}
