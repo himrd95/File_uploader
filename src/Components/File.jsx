@@ -6,11 +6,10 @@ import { Spinner } from "react-bootstrap";
 export const File = () => {
 	const [myFile, setMyFile] = useState("");
 	const [newImg, setNewImg] = useState("");
-	const [data, setData] = useState("");
+	const [dataArr, setDataArr] = useState("");
 	const buttonRef = useRef();
 	const inputRef = useRef();
 
-	console.log("ref=====", buttonRef.current);
 	useEffect(() => {
 		getImage();
 	}, []);
@@ -25,15 +24,15 @@ export const File = () => {
 	const getImage = () => {
 		axios
 			.get("https://him-app.herokuapp.com/posts")
-			.then((res) => setData(res.data))
+			.then((res) => setDataArr(res.data))
 			.catch((err) => console.log(err));
 		buttonRef.current.style.background = "#fcfcfc";
 	};
-	const postImage = () => {
+	const postImage = async () => {
 		const payload = {
 			Image: newImg,
 		};
-		axios
+		await axios
 			.post("https://him-app.herokuapp.com/posts", {
 				...payload,
 				status: false,
@@ -56,6 +55,7 @@ export const File = () => {
 		postImage();
 	};
 
+	console.log("image=>", newImg);
 	return (
 		<React.Fragment>
 			<input
@@ -70,11 +70,11 @@ export const File = () => {
 				Upload
 			</button>
 			{/* <Spinner animation="grow" /> */}
-			{!data ? (
+			{!dataArr ? (
 				<Spinner animation="grow" />
 			) : (
 				<div className="wrapper">
-					{data.map((img) => (
+					{dataArr.map((img) => (
 						<div className="container">
 							<img src={img.Image} alt="" />
 						</div>
